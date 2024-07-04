@@ -9,12 +9,12 @@ app.get('/oi', function (req, res) {
     res.send('Olá Mundo!')
   })
 
-//Lista de Personagens
+// Lista de Personagens
 const lista = ['Rick Sanchez', 'Morty Smith', 'Summer Smith']
 
 // Read All - [GET] /item
 app.get('/item', function(req, res) {
-  //Pegamos a lista e enviamos  como resposta HTTP
+  // Pegamos a lista e enviamos  como resposta HTTP
   res.send(lista)
 })
 
@@ -31,6 +31,18 @@ app.post('/item', function (req, res) {
 
   // Enviamos uma mensagem de suscesso
   res.send('Item criado com sucesso')
+})
+
+// Read By ID - [GET] /item/:id
+app.get('/item/:id', function (req,res) {
+  // Acessamos o parametro de rota ID
+  const id = req.params.id
+
+  // Acessamos o item na lista pelo ínidice corrigido (id - 1)
+  const item = lista[id - 1]
+
+  // Enviamos o item obtido como resposta
+  res.send(item)
 })
 
 app.listen(3000)
